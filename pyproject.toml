@@ -1,0 +1,49 @@
+[project]
+name = "normatrix"
+description = "check c epitech coding style"
+authors = [
+    {name = "Xavier Mitault", email = "xavier.mitault@epitech.eu"},
+]
+dependencies = [
+    "markdown",
+    "regex",
+    "isort>=5.10.1",
+]
+requires-python = ">=3.10"
+readme = "README.md"
+license = {text = "MIT"}
+dynamic = ["version"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Environment :: Console",
+    "Programming Language :: C",
+    "Topic :: Software Development :: Quality Assurance"
+]
+[project.optional-dependencies]
+rich = ["rich"]
+
+[build-system]
+requires = [
+    "pdm-pep517>=1.0.0",
+    "setuptools>=45",
+    "setuptools_scm[toml]>=6.2"
+]
+build-backend = "pdm.pep517.api"
+
+[tool]
+[tool.pdm.version]
+source = "scm"
+write_to = "normatrix/__version__.py"
+write_template = '__version__ = "{}"'
+[tool.pdm.build]
+includes = [
+    "normatrix/",
+]
+[tool.pdm.dev-dependencies]
+dev = [
+    "pre-commit>=2.20.0",
+    "black>=22.8.0",
+    "flake8>=5.0.4",
+]
