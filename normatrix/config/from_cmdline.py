@@ -30,8 +30,8 @@ CONFIGS:
         }}
         ```
 
-    for further information read the README.md on
-    https://github.com/Saverio976/NorMatrix
+for further information read the README.md on
+https://github.com/Saverio976/NorMatrix
 """
 
 options = [
@@ -101,11 +101,11 @@ options = [
         "name_or_flags": ["--output"],
         "params": {
             "metavar": "format",
-            "choices": OutputFormat,
-            "dest": "output_format",
+            "choices": OutputFormat.to_list(),
+            "dest": "format",
             "default": Config.format,
-            "help": "tell which output format to use [html, md, term_color,"
-            " term_rich]; for html the file is normatrix-result.html;"
+            "help": f"tell which output format to use {OutputFormat.to_list()}"
+            " ; for html the file is normatrix-result.html;"
             " for md the file is normatrix-result.md, other are on stdout",
         },
     },
@@ -130,6 +130,7 @@ def _parser():
     for args in options:
         parser.add_argument(*args["name_or_flags"], **(args["params"]))
     result = parser.parse_args()
+    result.format = OutputFormat(result.format)
     return result
 
 
