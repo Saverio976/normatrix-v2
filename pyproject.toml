@@ -6,7 +6,7 @@ authors = [
 ]
 dependencies = [
     "markdown",
-    "regex",
+    "regex>=2022.9.13",
     "isort>=5.10.1",
 ]
 requires-python = ">=3.10"

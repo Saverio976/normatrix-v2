@@ -194,7 +194,7 @@ dependencies = [
 
 [metadata]
 lock_version = "4.0"
-content_hash = "sha256:271cfbf7b373ad898f18b8f80a2848eba3a446f4eed215e48e9fb58869ad950e"
+content_hash = "sha256:06249ae7a9b6a26263465768b6acde9bbfa1829e698d2ced9d45e723104a3f00"
 
 [metadata.files]
 "black 22.8.0" = [

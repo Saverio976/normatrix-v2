@@ -105,6 +105,8 @@ class __Defaults:
         "*#",
         "*.d",
     ]
+    show_config = False
+    pass_test = False
     _options = [
         "operators_plugin",
         "preview",
@@ -115,6 +117,7 @@ class __Defaults:
         "paths",
         "libc_banned_func",
         "file_extension_banned",
+        "show_config",
     ]
 
 

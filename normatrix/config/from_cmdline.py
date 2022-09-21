@@ -92,8 +92,8 @@ options = [
         "params": {
             "action": "store_const",
             "dest": "pass_test",
-            "const": True,
-            "default": False,
+            "const": not Config.pass_test,
+            "default": Config.pass_test,
             "help": "run the unit tests for normatrix",
         },
     },
@@ -116,6 +116,16 @@ options = [
             "nargs": "*",
             "default": Config.paths,
             "help": "list of path to check (default: the current working directory)",
+        },
+    },
+    {
+        "name_or_flags": ["--show-conf"],
+        "params": {
+            "action": "store_const",
+            "dest": "show_config",
+            "const": not Config.show_config,
+            "default": Config.show_config,
+            "help": "Show config after parsing cmdline argument and .normatrix.json",
         },
     },
 ]
