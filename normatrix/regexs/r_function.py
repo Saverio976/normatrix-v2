@@ -5,7 +5,7 @@ from regexs import regexs_class
 
 regex.cache_all(True)
 
-# https://regex101.com/r/F6p3r9/1
+# https://regex101.com/r/F6p3r9/2
 re = r"\w{1,}( \*{0,} {0,}\w{1,}(\[[0-9]{0,}\]){0,}){1,} {0,}"
 r"\((\w{1,}( \*{0,} {0,}\w{1,}(\[[0-9]{0,}\]){0,}){1,} {0,},{0,1} {0,}){0,}\)"
 r" {0,}\n{0,}\{"
