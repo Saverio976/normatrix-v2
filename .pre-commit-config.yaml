@@ -34,5 +34,5 @@ repos:
     name: pyright
     stages: [commit]
     language: system
-    entry: pdm run pyrigh
+    entry: pdm run pyright
     types: [python]

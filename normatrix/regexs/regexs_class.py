@@ -6,7 +6,7 @@ class RegexsResult:
             )
         if len(text) <= start:
             raise ValueError(
-                f"{__file__}: ERROR: start of matching is out of range ({start})"
+                f"{__file__}: ERROR: start of matching is out of range ({start})"  # noqa: E501
             )
         if end < 0:
             raise ValueError(
@@ -19,4 +19,4 @@ class RegexsResult:
         self.text = text
         self.start = start
         self.end = end
-        self.matching = text[start : end + 1]
+        self.matching = text[start : (end + 1)]
