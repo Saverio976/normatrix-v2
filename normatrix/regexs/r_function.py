@@ -1,4 +1,5 @@
 import sys
+from typing import Union
 
 import regex
 from regexs import regexs_class
@@ -26,11 +27,11 @@ def is_token_not_escaped(text: str, index: int) -> bool:
     return False
 
 
-def match(text: str, timeout=1):
+def match(text: str, timeout=1) -> Union[None, regexs_class.RegexsResult]:
     try:
         res = reg.match(text, timeout=timeout)
     except TimeoutError as esc:
-        sys.stderr.write(f"ERROR: {__file__}:match: {esc}: {text}")
+        print(f"ERROR: {__file__}:match: {esc}: {text}", file=sys.stderr)
         return None
     if res is None:
         return None
