@@ -153,6 +153,15 @@ requires_python = ">=3.6"
 summary = "Pygments is a syntax highlighting package written in Python."
 
 [[package]]
+name = "pyright"
+version = "1.1.274"
+requires_python = ">=3.7"
+summary = "Command line wrapper for pyright"
+dependencies = [
+    "nodeenv>=1.6.0",
+]
+
+[[package]]
 name = "pyyaml"
 version = "6.0"
 requires_python = ">=3.6"
@@ -220,7 +229,7 @@ dependencies = [
 
 [metadata]
 lock_version = "4.0"
-content_hash = "sha256:13812ea00b7c6fdf486a9a3c4c4f81d8b1d9c4f5c1b21421503f8e017553d344"
+content_hash = "sha256:a3a2c5d40fc7698be96f19011f0063b77e0a797873ae9573c26b59a7888ee77c"
 
 [metadata.files]
 "black 22.8.0" = [
@@ -349,6 +358,10 @@ content_hash = "sha256:13812ea00b7c6fdf486a9a3c4c4f81d8b1d9c4f5c1b21421503f8e017
 "pygments 2.13.0" = [
     {url = "https://files.pythonhosted.org/packages/4f/82/672cd382e5b39ab1cd422a672382f08a1fb3d08d9e0c0f3707f33a52063b/Pygments-2.13.0-py3-none-any.whl", hash = "sha256:f643f331ab57ba3c9d89212ee4a2dabc6e94f117cf4eefde99a0574720d14c42"},
     {url = "https://files.pythonhosted.org/packages/e0/ef/5905cd3642f2337d44143529c941cc3a02e5af16f0f65f81cbef7af452bb/Pygments-2.13.0.tar.gz", hash = "sha256:56a8508ae95f98e2b9bdf93a6be5ae3f7d8af858b43e02c5a2ff083726be40c1"},
+]
+"pyright 1.1.274" = [
+    {url = "https://files.pythonhosted.org/packages/57/0b/5236236c3da21147319cf3f680b0ee321bdff852c6ce9a96e3b04a5c6f14/pyright-1.1.274.tar.gz", hash = "sha256:2a1a8cc4a9109d0d934b988c0099fc4b9189567d1a258b634f7babe352ba6661"},
+    {url = "https://files.pythonhosted.org/packages/fe/58/0054c65c536894fb721bb63189d226924fedfd935ea74c6556350323bf95/pyright-1.1.274-py3-none-any.whl", hash = "sha256:f0f9eb1b26871c5ac8bf3f32de6aafaffbfb252f5d7dc0fda2c6cba37e2c4232"},
 ]
 "pyyaml 6.0" = [
     {url = "https://files.pythonhosted.org/packages/02/25/6ba9f6bb50a3d4fbe22c1a02554dc670682a07c8701d1716d19ddea2c940/PyYAML-6.0-cp310-cp310-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_12_x86_64.manylinux2010_x86_64.whl", hash = "sha256:f84fbc98b019fef2ee9a1cb3ce93e3187a6df0b2538a651bfb890254ba9f90b5"},

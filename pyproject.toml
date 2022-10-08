@@ -47,4 +47,9 @@ dev = [
     "pre-commit>=2.20.0",
     "black>=22.8.0",
     "flake8>=5.0.4",
+    "pyright>=1.1.274",
 ]
+
+[tool.pyright]
+venvPath = "."
+venv = ".venv"

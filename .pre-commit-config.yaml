@@ -29,3 +29,10 @@ repos:
     language: system
     entry: pdm run refurb
     types: [python]
+
+  - id: pyright
+    name: pyright
+    stages: [commit]
+    language: system
+    entry: pdm run pyrigh
+    types: [python]
