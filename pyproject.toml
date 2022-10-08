@@ -8,6 +8,7 @@ dependencies = [
     "markdown",
     "regex>=2022.9.13",
     "isort>=5.10.1",
+    "refurb>=1.3.0",
 ]
 requires-python = ">=3.10"
 readme = "README.md"
