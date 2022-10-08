@@ -20,3 +20,6 @@ class RegexsResult:
         self.start = start
         self.end = end
         self.matching = text[start : (end + 1)]
+
+    def __str__(self):
+        return self.matching
