@@ -38,7 +38,7 @@ def match(text: str, timeout=1) -> Union[None, regexs_class.RegexsResult]:
     if text[end] == ";":
         return regexs_class.RegexsResult(text, start, end)
     fifo = ["{"]
-    while len(fifo) > 0 and len(text) > end + 1:
+    while fifo > 0 and len(text) > end + 1:
         end += 1
         if text[end] == "}" and is_token_not_escaped(text, end):
             fifo.pop(-1)

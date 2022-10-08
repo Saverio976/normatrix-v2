@@ -22,3 +22,10 @@ repos:
     entry: pdm run flake8
     types: [python]
     exclude: setup.py
+
+  - id: refurb
+    name: refurb
+    stages: [commit]
+    language: system
+    entry: pdm run refurb
+    types: [python]
