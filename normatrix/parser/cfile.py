@@ -1,5 +1,7 @@
 import os
+from copy import deepcopy
 from enum import Enum
+from pathlib import Path
 from typing import List, Union
 
 from normatrix.errors.norm import _TemplateNormError
@@ -43,28 +45,34 @@ order_parsers = [
 def find_ccontext(stack: List[str]) -> Union[None, "CContext"]:
     joined = "\n".join(stack)
     for mod, _type in order_parsers:
-        match = mod.match(joined)
+        match = mod.search(joined)
         if not match:
             continue
-        index_newline = None if "\n" not in joined else joined.index("\n")
-        if not index_newline or match.start >= index_newline:
+        index_newline = len(joined)
+        if "\n" in joined:
+            index_newline = joined.index("\n")
+        if match.start >= index_newline:
             continue
         nb_line = joined.count("\n", match.start, match.end)
+        if nb_line == 0:
+            nb_line = 1
         context = CContext(_type, match, nb_line)
         return context
     return None
 
 
 def parse_text_lines(text: List[str]) -> Union[None, List["CContext"]]:
-    stack = []
+    stack = deepcopy(text)
     res = []
 
-    for i, line in enumerate(text):
-        stack.append(line)
+    while stack:
         matching = find_ccontext(stack)
         if not matching:
+            stack.pop(0)
             continue
         res.append(matching)
+        for _ in range(min(len(stack), matching.nb_lines)):
+            stack.pop(0)
     return res
 
 
@@ -76,7 +84,7 @@ class CContext:
         self.matching = matching
         self.nb_lines = nb_line
         self.childs: List["CContext"] = []
-        parsed = parse_text_lines(matching.matching.split("\n"))
+        parsed = parse_text_lines(matching.matching.split("\n")[1:])
         if parsed:
             self.childs = parsed
 
@@ -86,6 +94,11 @@ class CContext:
         if not str(self.matching).endswith("\n"):
             ret += "\n"
         ret += f"- nb childs: {len(self.childs)}\n"
+        childs = ""
+        for chil in self.childs:
+            childs += str(chil)
+        childs = childs.replace("\n", "\n-- ")
+        ret += childs
         return ret
 
 
@@ -100,11 +113,10 @@ class CFile:
         self.is_init = False
 
     def init(self):
-        with open(self.filepath) as f:
-            self.lines_origin = f.readlines()
-        self.text_origin = "\n".join(self.lines_origin)
-        if not self.lines_origin:
-            return False
+        self.text_origin = Path(self.filepath).read_text()
+        if not self.text_origin:
+            return
+        self.lines_origin = self.text_origin.split("\n")
         parsed = parse_text_lines(self.lines_origin)
         if parsed:
             self.parsed_context = parsed
