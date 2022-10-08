@@ -22,10 +22,10 @@ for folder in config.paths:
     for filepath in files_to_check:
         print(filepath)
         f = file.File(filepath)
-        try:
-            f.init()
-            list_err.append(f.check_norm())
-        except Exception as esc:
-            print(f"ERROR: {esc}", file=sys.stderr)
+        # try:
+        f.init()
+        list_err.append(f.check_norm())
+        # except Exception as esc:
+        #     print(f"ERROR: {esc}", file=sys.stderr)
         print("\n".join([str(x) for x in list_err[-1]]))
         print()
