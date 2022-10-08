@@ -25,11 +25,11 @@ def is_token_not_escaped(text: str, index: int) -> bool:
     return False
 
 
-def match(text: str, timeout=1) -> Union[None, regexs_class.RegexsResult]:
+def search(text: str, timeout=1) -> Union[None, regexs_class.RegexsResult]:
     try:
-        res = reg.match(text, timeout=timeout)
+        res = reg.search(text, timeout=timeout)
     except TimeoutError as esc:
-        print(f"ERROR: {__file__}:match: {esc}: {text}", file=sys.stderr)
+        print(f"ERROR: {__file__}:search: {esc}: {text}", file=sys.stderr)
         return None
     if res is None:
         return None
@@ -38,7 +38,7 @@ def match(text: str, timeout=1) -> Union[None, regexs_class.RegexsResult]:
     if text[end] == ";":
         return regexs_class.RegexsResult(text, start, end)
     fifo = ["{"]
-    while fifo > 0 and len(text) > end + 1:
+    while fifo and len(text) > end + 1:
         end += 1
         if text[end] == "}" and is_token_not_escaped(text, end):
             fifo.pop(-1)
@@ -50,7 +50,7 @@ def match(text: str, timeout=1) -> Union[None, regexs_class.RegexsResult]:
 def sub(text: str, replace: str, timeout=1) -> None:
     is_ok = True
     while is_ok:
-        patr = match(text, timeout=timeout)
+        patr = search(text, timeout=timeout)
         if patr:
             text = text.replace(patr.matching, replace)
         else:

@@ -8,16 +8,18 @@ regex.cache_all(True)
 
 # https://regex101.com/r/fBLUOp/2 (old)
 # re = r"\w{1,}( \*{0,} {0,}\w{1,}(\[[0-9]{0,}\]){0,}){1,} {0,}= {0,}(([0-9]{1,})|(\".*\")|(\{.*\})|([&*]{1,}\w{1,})|(NULL)) {0,};{1}" # noqa: E501
-# https://regex101.com/r/ohzzuZ/1 (new)
+# https://regex101.com/r/ohzzuZ/1 (old)
+# re = r"\w{1,} {0,}\n{0,}( \*{0,} {0,}\n{0,} {0,}\w{1,} {0,}\n{0,} {0,}(\[ {0,}\n{0,} {0,}[0-9]{0,} {0,}\n{0,} {0,}\]){0,} {0,}\n{0,} {0,}){1,} {0,}= {0,}\n{0,} {0,}(([0-9]{1,})|((\".*\" {0,}\\){0,}(\".*\"){1})|(\{.*\})|([&*]{1,} {0,}\n{0,} {0,}\w{1,})|(NULL)|(\(.{2,}\).*)) {0,}\n{0,} {0,};{1}"  # noqa: E501
+# https://regex101.com/r/ohzzuZ/2
 re = r"\w{1,} {0,}\n{0,}( \*{0,} {0,}\n{0,} {0,}\w{1,} {0,}\n{0,} {0,}(\[ {0,}\n{0,} {0,}[0-9]{0,} {0,}\n{0,} {0,}\]){0,} {0,}\n{0,} {0,}){1,} {0,}= {0,}\n{0,} {0,}(([0-9]{1,})|((\".*\" {0,}\\){0,}(\".*\"){1})|(\{.*\})|([&*]{1,} {0,}\n{0,} {0,}\w{1,})|(NULL)|(\(.{2,}\).*)) {0,}\n{0,} {0,};{1}"  # noqa: E501
 reg = regex.compile(re)
 
 
-def match(text: str, timeout=1) -> Union[None, regexs_class.RegexsResult]:
+def search(text: str, timeout=1) -> Union[None, regexs_class.RegexsResult]:
     try:
-        res = reg.match(text, timeout=timeout)
+        res = reg.search(text, timeout=timeout)
     except TimeoutError as esc:
-        print(f"ERROR: {__file__}:match: {esc}: {text}", file=sys.stderr)
+        print(f"ERROR: {__file__}:search: {esc}: {text}", file=sys.stderr)
         return None
     if not res:
         return None

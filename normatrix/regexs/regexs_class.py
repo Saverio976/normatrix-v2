@@ -1,12 +1,12 @@
 class RegexsResult:
     def __init__(self, text: str, start: int, end: int) -> None:
-        if len(text) <= end:
+        if len(text) < end:
             raise ValueError(
-                f"{__file__}: ERROR: end of matching is out of range ({end})"
+                f"{__file__}: ERROR: end of matching is out of range ({end} > {len(text)})"  # noqa: E501
             )
-        if len(text) <= start:
+        if len(text) < start:
             raise ValueError(
-                f"{__file__}: ERROR: start of matching is out of range ({start})"  # noqa: E501
+                f"{__file__}: ERROR: start of matching is out of range ({start} > {len(text)})"  # noqa: E501
             )
         if end < 0:
             raise ValueError(
