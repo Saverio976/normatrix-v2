@@ -4,8 +4,6 @@ from typing import Union
 import regex
 from regexs import regexs_class
 
-regex.cache_all(True)
-
 # https://regex101.com/r/6tCFWA/1
 re = r"while {0,}\n{0,} {0,}\(([\s\S]*?\)) {0,}\n{0,} {0,}\{"
 reg = regex.compile(re)
@@ -42,7 +40,7 @@ def search(text: str, timeout=1) -> Union[None, regexs_class.RegexsResult]:
             fifo.pop(-1)
         elif text[end] == "{" and is_token_not_escaped(text, end):
             fifo.append("{")
-    return regexs_class.RegexsResult(text, start, end + 1)
+    return regexs_class.RegexsResult(text, start, end)
 
 
 def sub(text: str, replace: str, timeout=1) -> None:

@@ -4,8 +4,8 @@ from typing import Union
 import regex
 from regexs import regexs_class
 
-# https://regex101.com/r/q4jpdl/1
-re = r"for(\s)?\(([\w\W\s]*?;){2}([\w\W\s]*?)\)\s{0,}(\{|;)"
+# https://regex101.com/r/I6fr0x/1
+re = r"^( ){0,}\/{0,1}\/\*"
 reg = regex.compile(re)
 
 
@@ -35,14 +35,14 @@ def search(text: str, timeout=1) -> Union[None, regexs_class.RegexsResult]:
     end = res.end()
     if text[end] == ";":
         return regexs_class.RegexsResult(text, start, end)
-    fifo = ["{"]
-    while fifo and len(text) > end + 1:
+    fifo = ["/*"]
+    while fifo and len(text) > end + 2:
         end += 1
-        if text[end] == "}" and is_token_not_escaped(text, end):
+        if text[end : end + 2] == "*/" and is_token_not_escaped(text, end):
             fifo.pop(-1)
-        elif text[end] == "{" and is_token_not_escaped(text, end):
-            fifo.append("{")
-    return regexs_class.RegexsResult(text, start, end - 1)
+        elif text[end : end + 2] == "/*" and is_token_not_escaped(text, end):
+            fifo.append("/*")
+    regexs_class.RegexsResult(text, start, end)
 
 
 def sub(text: str, replace: str, timeout=1) -> None:

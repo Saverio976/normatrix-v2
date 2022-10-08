@@ -4,8 +4,6 @@ from typing import Union
 import regex
 from regexs import regexs_class
 
-regex.cache_all(True)
-
 # https://regex101.com/r/DJ3cg4/1
 re = r"\w{1,}( \*{0,} {0,}\w{1,}(\[[0-9]{0,}\]){0,}){1,} {0,}\((\w{1,} {0,}\n{0,}( \*{0,} {0,}\n{0,} {0,}\w{1,}(\[[0-9]{0,}\]){0,}){1,} {0,}\n{0,} {0,},{0,1} {0,}\n{0,} {0,}){0,}\) {0,}\n{0,};{1}"  # noqa: E501
 reg = regex.compile(re)
