@@ -3,6 +3,8 @@ import os
 import sys
 from typing import Dict, List, Union
 
+from rich.console import Console
+
 from normatrix.config.config_class import Config
 
 __FILE_NAME = ".normatrix.json"
@@ -23,16 +25,16 @@ def _remove(l1: list, elem, key: str) -> list:
     return l1
 
 
-def from_json(conf_path: str = ".") -> Config:
-    conf = Config()
+def from_json(console: Console, conf_path: str = ".") -> Config:
+    conf = Config(console)
     filepath = os.path.join(conf_path, __FILE_NAME)
     if not os.path.isfile(filepath):
         return conf
     with open(filepath) as file:
         data: Dict[str, Union[str, List[str], bool]] = json.load(file)
     for key, value in data:
-        if not hasattr(Config(), key) and not hasattr(
-            Config(), f"{key.replace('no_', '', 1)}"
+        if not hasattr(Config(console), key) and not hasattr(
+            Config(console), f"{key.replace('no_', '', 1)}"
         ):
             print(f"{key} don't exists in config", file=sys.stdout)
             continue

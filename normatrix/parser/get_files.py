@@ -29,4 +29,4 @@ def get_all_files(
                     continue
                 res.append(os.path.join(root, file))
         return res
-    raise os.error("Invalid path: {folder_or_file_path}")
+    raise os.error(f"Invalid path: {folder_or_file_path}")

@@ -1,7 +1,8 @@
 import json
-import sys
 from argparse import Namespace
 from typing import Any, Union
+
+from rich.console import Console
 
 
 class __OutputFormat:
@@ -122,14 +123,17 @@ class __Defaults:
 
 
 class Config(__Defaults):
-    def __init__(self) -> None:
+    def __init__(self, console: Console) -> None:
         super().__init__()
+        self.console: Console = console
 
     def __add_one(
         self, other: Union["Config", Namespace], attr: str, newConf: "Config"
     ) -> Any:
-        default = Config()
-        if getattr(self, attr, None) is None and getattr(other, attr, None) is not None:
+        default = Config(self.console)
+        if (
+            getattr(self, attr, None) is None and getattr(other, attr, None) is not None
+        ):  # noqa: E501
             setattr(newConf, attr, getattr(other, attr))
             return getattr(other, attr)
         if getattr(self, attr) != getattr(default, attr):
@@ -142,12 +146,12 @@ class Config(__Defaults):
         return getattr(other, attr)
 
     def __add__(self, other):
-        conf = Config()
+        conf = Config(self.console)
         try:
             for attr in self._options:
                 self.__add_one(other, attr, conf)
-        except Exception as esc:
-            print(f"ERROR: Could not add {self} and {other} : {esc}", file=sys.stderr)
+        except Exception:
+            self.console.print_exception()
         return conf
 
     def __str__(self):

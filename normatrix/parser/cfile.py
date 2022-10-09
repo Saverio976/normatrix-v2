@@ -4,6 +4,7 @@ from enum import Enum
 from pathlib import Path
 from typing import List, Union
 
+from normatrix.config.config_class import Config
 from normatrix.errors.norm import _TemplateNormError
 from normatrix.regexs import r_comment  # 1
 from normatrix.regexs import r_declaration  # 3
@@ -125,7 +126,7 @@ class CContext:
 
 
 class CFile:
-    def __init__(self, filepath: str) -> None:
+    def __init__(self, filepath: str, config: Config) -> None:
         if not os.path.isfile(filepath):
             raise os.error(f"Invalid filepath: {filepath}")
         self.filepath = filepath
@@ -134,7 +135,7 @@ class CFile:
         self.parsed_context: List[CContext] = []
         self.is_init = False
 
-    def init(self):
+    def init(self, config: Config):
         self.text_origin = Path(self.filepath).read_text()
         if not self.text_origin:
             return
@@ -145,7 +146,7 @@ class CFile:
         self.is_init = True
         print(self)
 
-    def check_norm(self) -> List[_TemplateNormError]:
+    def check_norm(self, config: Config) -> List[_TemplateNormError]:
         return []
 
     def __str__(self):

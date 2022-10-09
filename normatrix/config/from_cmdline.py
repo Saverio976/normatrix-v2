@@ -1,5 +1,8 @@
 import argparse
 
+from rich.console import Console
+from rich_argparse import RichHelpFormatter
+
 from normatrix.config.config_class import Config, OutputFormat
 
 __FULL_DOC = f"""SOURCE:
@@ -83,7 +86,7 @@ options = [
             "dest": "link_line",
             "const": not Config.link_line,
             "default": Config.link_line,
-            "help": 'to have the "link" to the file (in vscode terminal you can'
+            "help": 'to have the "link" to the file (in vscode terminal you can'  # noqa: E501
             " click it and it will open the file at the line of the error)",
         },
     },
@@ -133,7 +136,7 @@ options = [
 
 def _parser():
     parser = argparse.ArgumentParser(
-        formatter_class=argparse.RawDescriptionHelpFormatter,
+        formatter_class=RichHelpFormatter,
         description="Norm Checker For the C Epitech Coding Style",
         epilog=__FULL_DOC,
     )
@@ -144,8 +147,8 @@ def _parser():
     return result
 
 
-def from_cmdline() -> Config:
-    conf = Config()
+def from_cmdline(console: Console) -> Config:
+    conf = Config(console)
     args = _parser()
     conf = conf + args
     return conf
