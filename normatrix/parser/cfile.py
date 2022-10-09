@@ -144,7 +144,8 @@ class CFile:
         if parsed:
             self.parsed_context = parsed
         self.is_init = True
-        print(self)
+        if config.debug:
+            print(self)
 
     def check_norm(self, config: Config) -> List[_TemplateNormError]:
         return []

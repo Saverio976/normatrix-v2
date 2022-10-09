@@ -131,6 +131,16 @@ options = [
             "help": "Show config after parsing cmdline argument and .normatrix.json",
         },
     },
+    {
+        "name_or_flags": ["--debug"],
+        "params": {
+            "action": "store_const",
+            "dest": "debug",
+            "const": not Config.debug,
+            "default": Config.debug,
+            "help": "show debug output",
+        },
+    },
 ]
 
 

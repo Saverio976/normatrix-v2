@@ -108,6 +108,7 @@ class __Defaults:
     ]
     show_config = False
     pass_test = False
+    debug = False
     _options = [
         "operators_plugin",
         "preview",
@@ -119,6 +120,7 @@ class __Defaults:
         "libc_banned_func",
         "file_extension_banned",
         "show_config",
+        "debug",
     ]
 
 

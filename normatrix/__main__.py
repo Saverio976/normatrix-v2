@@ -40,7 +40,7 @@ for folder in config.paths:
         continue
     for filepath in files_to_check:
         list_err: List[_TemplateNormError] = []
-        config.console.print(f"[{filepath}]({filepath})")
+        config.console.print(f"[magenta underline]{filepath}")
         try:
             f = file.File(filepath, config)
             f.init(config)
