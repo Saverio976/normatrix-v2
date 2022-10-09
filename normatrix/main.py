@@ -4,15 +4,14 @@ from normatrix.checkers.check import check as check_norm
 from normatrix.config.config_class import Config
 from normatrix.errors.norm import _TemplateNormError
 from normatrix.parser import file, get_files
+from normatrix.show_stats import show_stat_folder
 from normatrix.tests.main import main as main_test
 
 
 def print_header(config: Config):
     if not config.only_exit_code:
         config.console.rule("[bold blue]normatrix", style="bold blue")
-        config.console.print(
-            "Check the Epitech C Coding Style", style="italic"
-        )  # noqa: E501
+        config.console.print("Check the Epitech C Coding Style", style="italic")
         config.console.line(2)
 
 
@@ -67,6 +66,9 @@ def main(config: Config) -> int:
     if not config.only_exit_code:
         config.console.rule("Norm:", style="blue")
     for folder in config.paths:
+        if not config.only_exit_code:
+            config.console.line()
+            config.console.print(f"[blue]Check: {folder}", justify="center")
         list_all_err: List[List[_TemplateNormError]] = []
         try:
             files_to_check = get_files.get_all_files(folder, [], [])
@@ -77,7 +79,8 @@ def main(config: Config) -> int:
         for filepath in files_to_check:
             list_all_err.append(check_file(config, filepath))
             nb_errors += len(list_all_err[-1])
-        # TODO: stat for folder
+        show_stat_folder(folder, config, list_all_err)
+
     if nb_errors:
         return 42
     return 0
