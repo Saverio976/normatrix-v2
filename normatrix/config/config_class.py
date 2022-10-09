@@ -109,6 +109,7 @@ class __Defaults:
     show_config = False
     pass_test = False
     debug = False
+    only_exit_code = False
     _options = [
         "operators_plugin",
         "preview",
@@ -121,6 +122,7 @@ class __Defaults:
         "file_extension_banned",
         "show_config",
         "debug",
+        "only_exit_code",
     ]
 
 
@@ -133,9 +135,7 @@ class Config(__Defaults):
         self, other: Union["Config", Namespace], attr: str, newConf: "Config"
     ) -> Any:
         default = Config(self.console)
-        if (
-            getattr(self, attr, None) is None and getattr(other, attr, None) is not None
-        ):  # noqa: E501
+        if getattr(self, attr, None) is None and getattr(other, attr, None) is not None:
             setattr(newConf, attr, getattr(other, attr))
             return getattr(other, attr)
         if getattr(self, attr) != getattr(default, attr):

@@ -118,7 +118,7 @@ options = [
             "metavar": "paths",
             "nargs": "*",
             "default": Config.paths,
-            "help": "list of path to check (default: the current working directory)",
+            "help": "list of path to check (default: the current working directory)",  # noqa: E501
         },
     },
     {
@@ -128,7 +128,7 @@ options = [
             "dest": "show_config",
             "const": not Config.show_config,
             "default": Config.show_config,
-            "help": "Show config after parsing cmdline argument and .normatrix.json",
+            "help": "Show config after parsing cmdline argument and .normatrix.json",  # noqa: E501
         },
     },
     {
@@ -139,6 +139,16 @@ options = [
             "const": not Config.debug,
             "default": Config.debug,
             "help": "show debug output",
+        },
+    },
+    {
+        "name_or_flags": ["--only-exit-code"],
+        "params": {
+            "action": "store_const",
+            "dest": "only_exit_code",
+            "const": not Config.only_exit_code,
+            "default": Config.only_exit_code,
+            "help": "dont show anything, only exit 42 if norm error, else, 0",
         },
     },
 ]
