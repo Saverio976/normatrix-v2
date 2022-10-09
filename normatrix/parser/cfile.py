@@ -1,11 +1,9 @@
-import os
 from copy import deepcopy
 from enum import Enum
-from pathlib import Path
 from typing import List, Union
 
 from normatrix.config.config_class import Config
-from normatrix.errors.norm import _TemplateNormError
+from normatrix.parser._file import _File
 from normatrix.regexs import r_comment  # 1
 from normatrix.regexs import r_declaration  # 3
 from normatrix.regexs import r_empty  # 10
@@ -125,30 +123,22 @@ class CContext:
         return ret
 
 
-class CFile:
+class CFile(_File):
     def __init__(self, filepath: str, config: Config) -> None:
-        if not os.path.isfile(filepath):
-            raise os.error(f"Invalid filepath: {filepath}")
-        self.filepath = filepath
+        super().__init__(filepath, config)
         self.lines_origin: List[str] = []
-        self.text_origin = ""
         self.parsed_context: List[CContext] = []
-        self.is_init = False
 
-    def init(self, config: Config):
-        self.text_origin = Path(self.filepath).read_text()
+    def init(self):
         if not self.text_origin:
             return
         self.lines_origin = self.text_origin.split("\n")
         parsed = parse_text_lines(self.lines_origin)
         if parsed:
             self.parsed_context = parsed
-        self.is_init = True
-        if config.debug:
+        if self.config.debug:
             print(self)
-
-    def check_norm(self, config: Config) -> List[_TemplateNormError]:
-        return []
+        self.is_init = True
 
     def __str__(self):
         ret = f"file: {self.filepath}\n"

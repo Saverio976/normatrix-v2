@@ -1,0 +1,20 @@
+from typing import List
+
+from normatrix.checkers.for_all.leading_line import check as check_line_start
+from normatrix.checkers.for_all.trailing_line import check as check_line_end
+from normatrix.checkers.for_all.trailing_space import check as check_space
+from normatrix.errors.norm import _TemplateNormError
+from normatrix.parser._file import _File
+
+checkerss = [
+    check_line_start,
+    check_space,
+    check_line_end,
+]
+
+
+def check(file: _File) -> List[_TemplateNormError]:
+    errs: List[_TemplateNormError] = []
+    for checker in checkerss:
+        errs.extend(checker(file))
+    return errs

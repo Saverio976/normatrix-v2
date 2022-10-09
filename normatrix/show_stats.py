@@ -24,7 +24,7 @@ def get_sort_diff_err(
 
 def get_avverage_file(errs: List[List[_TemplateNormError]]) -> float:
     nb_err_per_file = [len(x) for x in errs]
-    return sum(nb_err_per_file) / len(nb_err_per_file)
+    return round(sum(nb_err_per_file) / len(nb_err_per_file), 2)
 
 
 def get_stat_severity(errs: List[List[_TemplateNormError]]) -> Tuple[int, int, int]:
@@ -57,15 +57,20 @@ def show_stat_folder(
     diff = get_sort_diff_err(errs)
     err_avvr_file = get_avverage_file(errs)
     nb_major, nb_minor, nb_info = get_stat_severity(errs)
-    score = (nb_major * -3) + (nb_minor * -1) + (nb_info * 0)
+    s_major, s_minor, s_info = nb_major * -3, nb_minor * -1, 0
+    score = s_major + s_minor, s_info
     config.console.print(f"[blue]Stats: {folder}", justify="center")
-    config.console.print(
-        f"- Number of Different Errors: {get_color(len(diff))}"
-    )  # noqa: E501
+    config.console.print(f"- Number of Different Errors: {get_color(len(diff))}")
     config.console.print(
         f"- Averrage Number of Errors per File: {get_color(err_avvr_file)}"
-    )  # noqa: E501
-    config.console.print(f"- Number of MAJOR: {get_color(nb_major)}")
-    config.console.print(f"- Number of MINOR: {get_color(nb_minor)}")
-    config.console.print(f"- Number of INFO: {get_color(nb_info)}")
+    )
+    config.console.print(
+        f"- Number of MAJOR: {get_color(nb_major)} " f"({get_color(s_major)})"
+    )
+    config.console.print(
+        f"- Number of MINOR: {get_color(nb_minor)} " f"({get_color(s_minor)})"
+    )
+    config.console.print(
+        f"- Number of INFO: {get_color(nb_info)} " f"({get_color(s_info)})"
+    )
     config.console.print(f"- Your score: {get_color(score)}")

@@ -11,7 +11,9 @@ from normatrix.tests.main import main as main_test
 def print_header(config: Config):
     if not config.only_exit_code:
         config.console.rule("[bold blue]normatrix", style="bold blue")
-        config.console.print("Check the Epitech C Coding Style", style="italic")
+        config.console.print(
+            "Check the Epitech C Coding Style", style="italic"
+        )  # noqa: E501
         config.console.line(2)
 
 
@@ -37,8 +39,8 @@ def check_file(config, filepath: str) -> List[_TemplateNormError]:
         config.console.print(f"[magenta underline]{filepath}")
     try:
         f = file.File(filepath, config)
-        f.init(config)
-        list_err = f.check_norm(config)
+        f.init()
+        list_err = f.check_norm()
         list_err.extend(check_norm(f))
     except Exception:
         config.console.print(":warning: [red]An Error Occured")

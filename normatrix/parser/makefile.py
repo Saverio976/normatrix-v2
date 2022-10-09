@@ -1,15 +1,10 @@
-from typing import List
-
 from normatrix.config.config_class import Config
-from normatrix.errors.norm import _TemplateNormError
+from normatrix.parser._file import _File
 
 
-class MakeFile:
+class MakeFile(_File):
     def __init__(self, filepath: str, config: Config):
-        self.filepath = filepath
+        super().__init__(filepath, config)
 
     def init(self, config: Config):
-        pass
-
-    def check_norm(self, config: Config) -> List[_TemplateNormError]:
-        return []
+        self.is_init = True
