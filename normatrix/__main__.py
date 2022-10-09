@@ -3,6 +3,7 @@ from typing import List
 
 from rich.console import Console
 
+from normatrix.checkers.check import check as check_norm
 from normatrix.config.config import get_config
 from normatrix.errors.norm import _TemplateNormError
 from normatrix.parser import file, get_files
@@ -15,7 +16,9 @@ config.console.print("Check the Epitech C Coding Style", style="italic")
 config.console.line(2)
 
 if config.show_config:
-    config.console.rule("Parsed Config from cmdline + `.normatrix.json`", style="blue")
+    config.console.rule(
+        "Parsed Config from cmdline + `.normatrix.json`", style="blue"
+    )  # noqa: E501
     config.console.print_json(data=config)
     config.console.line()
 
@@ -42,6 +45,7 @@ for folder in config.paths:
             f = file.File(filepath, config)
             f.init(config)
             list_err = f.check_norm(config)
+            list_err.extend(check_norm(f))
             list_all_err.append(list_err)
         except Exception:
             config.console.print(":warning: [red]An Error Occured")
