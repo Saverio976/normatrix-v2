@@ -1,5 +1,4 @@
 import sys
-from pathlib import Path
 
 from rich.console import Console
 
@@ -16,13 +15,18 @@ out = None
 outfilext = None
 outfile = ".normatrix.report"
 if config.format == OutputFormat("HTML"):
-    out = config.console.export_html()
     outfilext = ".html"
-if config.format == OutputFormat("MARKDOWN"):
-    out = config.console.export_text()
+    config.console.save_html(f"{outfile}{outfilext}")
+    out = True
+elif config.format == OutputFormat("MARKDOWN"):
     outfilext = ".md"
+    config.console.save_text(f"{outfile}{outfilext}")
+    out = True
+elif config.format == OutputFormat("SVG"):
+    outfilext = ".svg"
+    config.console.save_svg(f"{outfile}{outfilext}")
+    out = True
 if out:
-    Path(f"{outfile}{outfilext}").write_text(out)
     open_file(f"{outfile}{outfilext}")
 
 sys.exit(ex)

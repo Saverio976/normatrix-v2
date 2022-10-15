@@ -11,6 +11,7 @@ class __OutputFormat:
         "MARKDOWN": "md",
         "TERM_COLOR": "term_color",
         "TERM_RICH": "term_rich",
+        "SVG": "svg",
     }
 
     def __init__(self, any: Any = None) -> None:

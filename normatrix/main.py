@@ -57,6 +57,11 @@ def check_file(config, filepath: str) -> List[_TemplateNormError]:
     return list_err
 
 
+def print_footer(config: Config):
+    if not config.only_exit_code:
+        config.console.print(f"Time: {config.console.get_datetime()}", justify="right")
+
+
 def main(config: Config) -> int:
     nb_errors = 0
     print_header(config)
@@ -83,6 +88,7 @@ def main(config: Config) -> int:
             nb_errors += len(list_all_err[-1])
         show_stat_folder(folder, config, list_all_err)
 
+    print_footer(config)
     if nb_errors:
         return 42
     return 0
