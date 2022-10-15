@@ -159,3 +159,7 @@ class Config(__Defaults):
     def __str__(self):
         dico = {key: str(getattr(self, key)) for key in self._options}
         return json.dumps(dico, ensure_ascii=True, indent=4)
+
+    def to_dict(self):
+        dico = {key: str(getattr(self, key)) for key in self._options}
+        return dico

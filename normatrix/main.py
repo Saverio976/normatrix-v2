@@ -22,7 +22,7 @@ def print_config(config: Config):
         config.console.rule(
             "Parsed Config from cmdline + `.normatrix.json`", style="blue"
         )
-        config.console.print_json(data=config)
+        config.console.print_json(data=config.to_dict())
         config.console.line()
 
 
