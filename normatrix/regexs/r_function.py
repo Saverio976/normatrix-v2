@@ -42,7 +42,7 @@ def search(text: str, timeout=1) -> Optional[regexs_class.RegexsResult]:
             fifo.pop(-1)
         elif text[end] == "{" and is_token_not_escaped(text, end):
             fifo.append("{")
-    res = regexs_class.RegexsResult(text, start, end - 1)
+    res = regexs_class.RegexsResult(text, start, end)
     return res
 
 
