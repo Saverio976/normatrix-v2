@@ -28,7 +28,7 @@ def check_comment(file: CFile) -> List[_TemplateNormError]:
     errs = []
     for ctx in file.parsed_context:
         if ctx.type == CContextType.FUNCTION:
-            _check_inside_func(ctx, file)
+            errs.extend(_check_inside_func(ctx, file))
     for i, line in enumerate(file.lines_origin):
         if line.startswith(" "):
             start = line.strip(" \t")
