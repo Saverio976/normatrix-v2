@@ -1,7 +1,7 @@
 import argparse
 
 from rich.console import Console
-from rich_argparse import RichHelpFormatter
+from rich_argparse import RawDescriptionRichHelpFormatter
 
 from normatrix.config.config_class import Config, OutputFormat
 
@@ -156,7 +156,7 @@ options = [
 
 def _parser():
     parser = argparse.ArgumentParser(
-        formatter_class=RichHelpFormatter,
+        formatter_class=RawDescriptionRichHelpFormatter,
         description="Norm Checker For the C Epitech Coding Style",
         epilog=__FULL_DOC,
     )
