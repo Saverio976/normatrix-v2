@@ -139,7 +139,7 @@ class LineEnding(_TemplateNormError):
             line=line,
             severity=Severity.MINOR,
             rule="C-G6",
-            explanation="Line endings must be done in UNIX style (with \\n)",  # noqa: E501
+            explanation="Line endings must be done in UNIX style (with \\n)",
             msg=msg,
         )
 
@@ -211,7 +211,7 @@ class FunctionParametersNumber(_TemplateNormError):
             line=line,
             severity=Severity.MAJOR,
             rule="C-F5",
-            explanation="A function must not have more than 4 parameters",  # noqa: E501
+            explanation="A function must not have more than 4 parameters",
             msg=msg,
         )
 
@@ -247,7 +247,7 @@ class CommentInFunction(_TemplateNormError):
             line=line,
             severity=Severity.MINOR,
             rule="C-F8",
-            explanation="There must be no comment within a function",  # noqa: E501
+            explanation="There must be no comment within a function",
             msg=msg,
         )
 
@@ -259,7 +259,7 @@ class NestedFunction(_TemplateNormError):
             line=line,
             severity=Severity.MAJOR,
             rule="C-F9",
-            explanation="Nested functions are not allowed",  # noqa: E501
+            explanation="Nested functions are not allowed",
             msg=msg,
         )
 
@@ -271,7 +271,7 @@ class ManyStatementOnLine(_TemplateNormError):
             line=line,
             severity=Severity.MAJOR,
             rule="C-L1",
-            explanation="A line must correspond to only one statement",  # noqa: E501
+            explanation="A line must correspond to only one statement",
             msg=msg,
         )
 
@@ -379,7 +379,7 @@ class NoGoto(_TemplateNormError):
             line=line,
             severity=Severity.MAJOR,
             rule="C-C3",
-            explanation="Using the goto keyword is forbidden",  # noqa: E501
+            explanation="Using the goto keyword is forbidden",
             msg=msg,
         )
 
@@ -403,7 +403,7 @@ class NoIncludeGuard(_TemplateNormError):
             line=line,
             severity=Severity.MAJOR,
             rule="C-H2",
-            explanation="Headers must be protected from double inclusion",  # noqa: E501
+            explanation="Headers must be protected from double inclusion",
             msg=msg,
         )
 
@@ -427,6 +427,17 @@ class BadEndLineBreak(_TemplateNormError):
             line=line,
             severity=Severity.INFO,
             rule="C-A3",
-            explanation="Files must end with a line break",  # noqa: E501
+            explanation="Files must end with a line break",
             msg=msg,
+        )
+
+
+class Info(_TemplateNormError):
+    def __init__(self, filepath: str, line: int, msg: str):
+        super().__init__(
+            filepath=filepath,
+            line=line,
+            severity=Severity.INFO,
+            rule="info",
+            explanation="tip of the dev",
         )
