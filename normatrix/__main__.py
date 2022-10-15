@@ -20,7 +20,7 @@ if config.format == OutputFormat("HTML"):
     outfilext = ".html"
 if config.format == OutputFormat("MARKDOWN"):
     out = config.console.export_text()
-    outfilext = ".txt"
+    outfilext = ".md"
 if out:
     Path(f"{outfile}{outfilext}").write_text(out)
     open_file(f"{outfile}{outfilext}")
