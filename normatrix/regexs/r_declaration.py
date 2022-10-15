@@ -28,6 +28,6 @@ def search(text: str, timeout=1) -> Optional[regexs_class.RegexsResult]:
 
 def sub(text: str, replace: str, timeout=1) -> Optional[str]:
     try:
-        return reg.sub(replace, text, timeout=timeout)
+        return reg.sub(text, replace, timeout=timeout)
     except TimeoutError as esc:
         print(f"ERROR: {__file__}:sub: {esc}: {text}", file=sys.stderr)
