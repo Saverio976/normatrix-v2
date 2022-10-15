@@ -58,7 +58,7 @@ def show_stat_folder(
     err_avvr_file = get_avverage_file(errs)
     nb_major, nb_minor, nb_info = get_stat_severity(errs)
     s_major, s_minor, s_info = nb_major * -3, nb_minor * -1, 0
-    score = s_major + s_minor, s_info
+    score = s_major + s_minor + s_info
     config.console.print(f"[blue]Stats: {folder}", justify="center")
     config.console.print(f"- Number of Different Errors: {get_color(len(diff))}")
     config.console.print(
