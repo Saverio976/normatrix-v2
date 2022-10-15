@@ -1,5 +1,5 @@
 import sys
-from typing import Union
+from typing import Optional
 
 import regex
 from regexs import regexs_class
@@ -23,7 +23,7 @@ def is_token_not_escaped(text: str, index: int) -> bool:
     return False
 
 
-def search(text: str, timeout=1) -> Union[None, regexs_class.RegexsResult]:
+def search(text: str, timeout=1) -> Optional[regexs_class.RegexsResult]:
     try:
         res = reg.search(text, timeout=timeout)
     except TimeoutError as esc:
@@ -45,7 +45,7 @@ def search(text: str, timeout=1) -> Union[None, regexs_class.RegexsResult]:
     return regexs_class.RegexsResult(text, start, end - 1)
 
 
-def sub(text: str, replace: str, timeout=1) -> None:
+def sub(text: str, replace: str, timeout=1) -> Optional[str]:
     is_ok = True
     while is_ok:
         patr = search(text, timeout=timeout)
@@ -53,3 +53,4 @@ def sub(text: str, replace: str, timeout=1) -> None:
             text = text.replace(patr.matching, replace)
         else:
             is_ok = False
+    return text

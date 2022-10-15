@@ -15,6 +15,7 @@ from normatrix.regexs import r_prototype  # 4
 from normatrix.regexs import r_struct  # 5
 from normatrix.regexs import r_union  # 6
 from normatrix.regexs import r_while  # 9
+from normatrix.regexs import r_text
 from normatrix.regexs.regexs_class import RegexsResult
 
 
@@ -128,6 +129,7 @@ class CFile(_File):
         super().__init__(filepath, config)
         self.lines_origin: List[str] = []
         self.parsed_context: List[CContext] = []
+        self.text_origin_without_text: str = ""
 
     def init(self):
         if not self.text_origin:
@@ -138,6 +140,9 @@ class CFile(_File):
             self.parsed_context = parsed
         if self.config.debug:
             print(self)
+        without_text = r_text.sub(self.text_origin, "")
+        if without_text:
+            self.text_origin_without_text = without_text
         self.is_init = True
 
     def __str__(self):
