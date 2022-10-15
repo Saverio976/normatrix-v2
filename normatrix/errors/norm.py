@@ -440,4 +440,5 @@ class Info(_TemplateNormError):
             severity=Severity.INFO,
             rule="info",
             explanation="tip of the dev",
+            msg=msg,
         )
