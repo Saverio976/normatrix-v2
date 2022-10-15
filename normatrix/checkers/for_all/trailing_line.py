@@ -4,7 +4,7 @@ from normatrix.errors.norm import LeadingTrailingLine, _TemplateNormError
 from normatrix.parser._file import _File
 
 
-def check(file: _File) -> List[_TemplateNormError]:
+def check_line_end(file: _File) -> List[_TemplateNormError]:
     if not file.text_origin:
         return []
     if file.text_origin.endswith("\n\n"):

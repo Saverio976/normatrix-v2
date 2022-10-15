@@ -1,8 +1,8 @@
 from typing import List
 
-from normatrix.checkers.for_all.leading_line import check as check_line_start
-from normatrix.checkers.for_all.trailing_line import check as check_line_end
-from normatrix.checkers.for_all.trailing_space import check as check_space
+from normatrix.checkers.for_all.leading_line import check_line_start
+from normatrix.checkers.for_all.trailing_line import check_line_end
+from normatrix.checkers.for_all.trailing_space import check_space
 from normatrix.errors.norm import _TemplateNormError
 from normatrix.parser._file import _File
 

@@ -4,7 +4,7 @@ from normatrix.errors.norm import TrailingSpace, _TemplateNormError
 from normatrix.parser._file import _File
 
 
-def check(file: _File) -> List[_TemplateNormError]:
+def check_space(file: _File) -> List[_TemplateNormError]:
     if not file.text_origin:
         return []
     errs: List[_TemplateNormError] = []
