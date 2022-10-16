@@ -5,7 +5,7 @@ from normatrix.parser.cfile import CFile
 
 
 def check_header(file: CFile) -> List[_TemplateNormError]:
-    lines = file.text_origin[:]
+    lines = file.lines_origin[:]
     if len(lines) < 6:
         return [FileHeader(file.filepath, 0, "No header..")]
     if lines[0] != "/*":

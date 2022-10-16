@@ -9,7 +9,7 @@ def _check_func(
 ) -> List[_TemplateNormError]:
     errs = []
     start_ctx = file.text_origin.index(ctx.matching.matching, start_ctx)
-    if nested_level >= 3:
+    if nested_level >= 4:
         line_nb = file.text_origin.count("\n", 0, start_ctx) + 1
         return [TooManyConditionBranch(file.filepath, line_nb, "Too many Branch")]
     for ctx1 in ctx.childs:

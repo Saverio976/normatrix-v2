@@ -16,7 +16,7 @@ smart_match = {
 operator_list = [
     (" ([+", "+", "+])= ", r"(\+\+\w)|(\w\+\+)"),
     (" ([-{", "-", "-])=> ", r"(--\w)|(\w--)"),
-    (" ([/*", "*", ":NOTHING:", r"[\[\{\( ]\*{2,}"),
+    (r" ([/*", "*", "/", r"[\[\{\( ]\*{2,}"),
     (" (/*", "/", "*/= ", r'(<.*?\/.*?\.h>)|(".*?\/.*?\.h")'),
     ("< ", "<", ":ALL:"),
     (":ALL:", ">", " >="),
@@ -31,7 +31,7 @@ operator_list = [
 def _get_escape_regex(s: str, need: bool) -> str:
     escape = ""
     for c in s:
-        if c in "\\^$.|?*+()[]{}":
+        if c in r"\^$.|?*+()[]{}":
             escape += "\\"
         escape += c
     new = smart_match.get(escape, escape)
@@ -46,13 +46,23 @@ def _check_line(file: CFile, line: str, line_nb: int, op: tuple):
     errs = []
     if len(op) == 4:
         line = re.sub(op[3], "", line)
+    debug = "*" in line
+    if debug:
+        print(f"check op: {op}")
+        print(line)
     for _ in range(2):
         rex = _get_escape_regex(op[0], True)
         line = re.sub(f"{rex}{_get_escape_regex(op[1], False)}", "", line)
+        if debug:
+            print(line)
         rex = _get_escape_regex(op[2], True)
         line = re.sub(f"{_get_escape_regex(op[1], False)}{rex}", "", line)
+        if debug:
+            print(line)
     if line.endswith(op[1]):
         line = line[: -len(op)]
+    if debug:
+        print(line)
     if op[1] in line:
         errs.append(BadSpace(file.filepath, line_nb, f"bad space for operator {op[1]}"))
     return errs
