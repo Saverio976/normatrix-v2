@@ -6,5 +6,5 @@ class MakeFile(_File):
     def __init__(self, filepath: str, config: Config):
         super().__init__(filepath, config)
 
-    def init(self, config: Config):
+    def init(self):
         self.is_init = True
