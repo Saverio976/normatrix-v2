@@ -11,7 +11,10 @@ class _File:
         if not os.path.isfile(filepath):
             raise os.error(f"Invalid filepath: {filepath}")
         self.filepath = filepath
-        self.text_origin = Path(self.filepath).read_text()
+        try:
+            self.text_origin = Path(self.filepath).read_text()
+        except Exception:
+            self.text_origin = ""
         self.lines_origin = []
         self.parsed_context = []
         self.config = config

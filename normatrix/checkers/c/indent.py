@@ -8,7 +8,7 @@ def check_indent(file: CFile) -> List[_TemplateNormError]:
     errs = []
     for i, line in enumerate(file.lines_origin):
         len_space = 0
-        while line and line[len_space] == " ":
+        while line and len_space < len(line) and line[len_space] == " ":
             len_space += 1
         if len_space % 4 != 0:
             errs.append(

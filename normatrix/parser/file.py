@@ -11,10 +11,10 @@ class DefaultFile(_File):
     def __init__(self, filepath: str, config: Config) -> None:
         super().__init__(filepath, config)
 
-    def init(self, config: Config):
+    def init(self):
         self.is_init = True
 
-    def check_norm(self, config: Config) -> List[_TemplateNormError]:
+    def check_norm(self) -> List[_TemplateNormError]:
         return [BadFileExtension(self.filepath)]
 
 
