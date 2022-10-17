@@ -5,7 +5,6 @@ from normatrix.config.config_class import Config
 from normatrix.errors.norm import _TemplateNormError
 from normatrix.parser import file, get_files
 from normatrix.show_stats import show_stat_folder
-from normatrix.tests.main import main as main_test
 
 
 def print_header(config: Config):
@@ -24,13 +23,6 @@ def print_config(config: Config):
         )
         config.console.print_json(data=config.to_dict())
         config.console.line()
-
-
-def pass_test(config: Config) -> int:
-    config.console.rule("Execute Tests", style="blue")
-    ex = main_test()
-    config.console.line()
-    return ex
 
 
 def check_file(config, filepath: str) -> List[_TemplateNormError]:
@@ -68,7 +60,8 @@ def main(config: Config) -> int:
     print_config(config)
 
     if config.pass_test:
-        return pass_test(config)
+        print("Not implemented yet")
+        return 0
 
     if not config.only_exit_code:
         config.console.rule("Norm:", style="blue")
