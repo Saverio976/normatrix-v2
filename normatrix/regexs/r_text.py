@@ -4,8 +4,8 @@ from typing import Optional
 import regex
 from regexs import regexs_class
 
-# https://regex101.com/r/6cB6Ls/1
-re = r".*?(?<!\\)"
+# https://regex101.com/r/O7MI5W/1
+re = r"\"(.|\n)*?(?<!\\)\""
 reg = regex.compile(re)
 
 

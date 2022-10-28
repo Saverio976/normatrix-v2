@@ -9,9 +9,9 @@
 #include "linked_list.h"
 #include <stddef.h>
 
-int my_add_in_sorted_list(linked_list_t **, void *data, int(*cmp)(), int lol);
+int my_add_in_sorted_list(linked_list_t **, void *data, int(*cmp) (), int lol);
 
-void my_merge(linked_list_t **begin1, linked_list_t *begin2, int(*cmp)())
+void my_merge(linked_list_t **begin1, linked_list_t *begin2, int(*cmp) ())
 {
     linked_list_t *cp;
     linked_list_t *next;
@@ -23,8 +23,8 @@ void my_merge(linked_list_t **begin1, linked_list_t *begin2, int(*cmp)())
 
     }
     while (cp != NULL) {
-        next = cp -> next;
-        my_add_in_sorted_list(begin1, cp -> data, cmp);
+        next = cp->next;
+        my_add_in_sorted_list(begin1, cp->data, cmp);
         cp = next;
 
     }

@@ -1,7 +1,7 @@
 from typing import List
 
 from normatrix.config.config_class import Config
-from normatrix.errors.norm import BadFileExtension, _TemplateNormError
+from normatrix.errors.norm import _TemplateNormError
 from normatrix.parser._file import _File
 from normatrix.parser.cfile import CFile
 from normatrix.parser.makefile import MakeFile
@@ -15,7 +15,7 @@ class DefaultFile(_File):
         self.is_init = True
 
     def check_norm(self) -> List[_TemplateNormError]:
-        return [BadFileExtension(self.filepath)]
+        return []
 
 
 class File:
