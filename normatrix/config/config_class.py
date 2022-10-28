@@ -111,6 +111,9 @@ class __Defaults:
     pass_test = False
     debug = False
     only_exit_code = False
+    show_explanation = False
+    explain_error = ""
+    list_errors = False
     _options = [
         "operators_plugin",
         "preview",
@@ -124,6 +127,9 @@ class __Defaults:
         "show_config",
         "debug",
         "only_exit_code",
+        "show_explanation",
+        "explain_error",
+        "list_errors",
     ]
 
 

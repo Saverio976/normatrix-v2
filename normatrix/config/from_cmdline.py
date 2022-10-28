@@ -151,6 +151,37 @@ options = [
             "help": "dont show anything, only exit 42 if norm error, else, 0",
         },
     },
+    {
+        "name_or_flags": ["--show-explanation"],
+        "params": {
+            "action": "store_const",
+            "dest": "show_explanation",
+            "const": not Config.show_explanation,
+            "default": Config.show_explanation,
+            "help": "show the pdf coding style explanation for each error",
+        },
+    },
+    {
+        "name_or_flags": ["--explain"],
+        "params": {
+            "dest": "explain_error",
+            "metavar": "error",
+            "nargs": 1,
+            "type": str,
+            "default": Config.explain_error,
+            "help": "show the pdf coding style explanation for the error code specified",  # noqa: E501
+        },
+    },
+    {
+        "name_or_flags": ["--list-errors"],
+        "params": {
+            "action": "store_const",
+            "dest": "list_errors",
+            "const": not Config.list_errors,
+            "default": Config.list_errors,
+            "help": "list all norm errors that normatrix have registered",
+        },
+    },
 ]
 
 
@@ -164,6 +195,7 @@ def _parser():
         parser.add_argument(*args["name_or_flags"], **(args["params"]))
     result = parser.parse_args()
     result.format = OutputFormat(result.format)
+    result.explain_error = " ".join(result.explain_error)
     return result
 
 

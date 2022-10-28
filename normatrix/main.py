@@ -2,7 +2,7 @@ from typing import List
 
 from normatrix.checkers.check import check as check_norm
 from normatrix.config.config_class import Config
-from normatrix.errors.norm import _TemplateNormError
+from normatrix.errors.norm import ALL_ERROR_NORM, _TemplateNormError
 from normatrix.parser import file, get_files
 from normatrix.show_stats import show_stat_folder
 
@@ -10,9 +10,7 @@ from normatrix.show_stats import show_stat_folder
 def print_header(config: Config):
     if not config.only_exit_code:
         config.console.rule("[bold blue]normatrix", style="bold blue")
-        config.console.print(
-            "Check the Epitech C Coding Style", style="italic"
-        )  # noqa: E501
+        config.console.print("Check the Epitech C Coding Style", style="italic")
         config.console.line(2)
 
 
@@ -39,7 +37,16 @@ def check_file(config, filepath: str) -> List[_TemplateNormError]:
         config.console.print_exception()
     else:
         if not config.only_exit_code and list_err:
-            config.console.print("\n".join([f"- {x}" for x in list_err]))
+            list_to_print = list(
+                map(
+                    lambda x: x.show(
+                        with_explanation=config.show_explanation, print_stdout=False
+                    ),
+                    list_err,
+                )
+            )
+            to_print = "\n".join(list_to_print)
+            config.console.print(to_print)
     if not config.only_exit_code:
         if not list_err:
             config.console.print("FILE [green]OK :heavy_check_mark:")
@@ -54,6 +61,25 @@ def print_footer(config: Config):
         config.console.print(f"Time: {config.console.get_datetime()}", justify="right")
 
 
+def explain_error(err: str, config: Config) -> int:
+    at_least = False
+    for norm in ALL_ERROR_NORM:
+        if err in norm.rule:
+            at_least = True
+            to_print = norm.only_explanation(print_stdout=False)
+            config.console.print(to_print)
+    if at_least:
+        return 0
+    config.console.print("[red]No norm error with this code")
+    return 2
+
+
+def list_errors(config: Config):
+    for norm in ALL_ERROR_NORM:
+        to_print = norm.only_explanation(print_stdout=False)
+        config.console.print(to_print)
+
+
 def main(config: Config) -> int:
     nb_errors = 0
     print_header(config)
@@ -61,6 +87,13 @@ def main(config: Config) -> int:
 
     if config.pass_test:
         print("Not implemented yet")
+        return 0
+
+    if config.explain_error:
+        return explain_error(config.explain_error, config)
+
+    if config.list_errors:
+        list_errors(config)
         return 0
 
     if not config.only_exit_code:
