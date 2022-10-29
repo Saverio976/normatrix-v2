@@ -10,6 +10,7 @@ from normatrix.regexs import r_empty  # 10
 from normatrix.regexs import r_for  # 8
 from normatrix.regexs import r_function  # 10
 from normatrix.regexs import r_if  # 7
+from normatrix.regexs import r_imperativ  # 13
 from normatrix.regexs import r_macro  # 2
 from normatrix.regexs import r_prototype  # 4
 from normatrix.regexs import r_struct  # 5
@@ -31,21 +32,23 @@ class CContextType(Enum):
     WHILE = "while loop"
     COMMENT = "block comment"
     EMPTY = "empty line"
+    IMPERATIV = "imperativ line"
     UNKNOW = "line type unknow"
 
 
 order_parsers = [
     (r_comment, CContextType.COMMENT),
     (r_macro, CContextType.MACRO),
+    (r_if, CContextType.IF),
+    (r_for, CContextType.FOR),
+    (r_while, CContextType.WHILE),
     (r_declaration, CContextType.DECLARATION),
     (r_prototype, CContextType.PROTOTYPE),
     (r_struct, CContextType.STRUCT),
     (r_union, CContextType.UNION),
-    (r_if, CContextType.IF),
-    (r_for, CContextType.FOR),
-    (r_while, CContextType.WHILE),
     (r_function, CContextType.FUNCTION),
     (r_empty, CContextType.EMPTY),
+    (r_imperativ, CContextType.IMPERATIV),
 ]
 
 
