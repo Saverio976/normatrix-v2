@@ -23,6 +23,7 @@ jobs:
         run: |
           export PDM_PUBLISH_USERNAME="__token__"
           export PDM_PUBLISH_PASSWORD="${{ secrets.PYPI_API_TOKEN }}"
+          export PDM_PUBLISH_COMMENT="${{ github.event.release.body }}"
 
       - name: Publish
-        run: pdm publish -c "${{ github.event.release.name }}: ${{ github.event.release.body }}"
+        run: pdm publish -c "$PDM_PUBLISH_COMMENT"
