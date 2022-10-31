@@ -32,3 +32,6 @@ def entrypoint():
         open_file(f"{outfile}{outfilext}")
 
     sys.exit(ex)
+
+
+entrypoint()
