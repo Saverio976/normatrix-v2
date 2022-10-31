@@ -10,6 +10,10 @@ check c epitech coding style
 
 ![https://github.com/X-R-G-B/norma2/blob/main/assets/images/run_playground.svg](https://github.com/X-R-G-B/norma2/blob/main/assets/images/run_playground.svg)
 
+![https://github.com/X-R-G-B/norma2/blob/main/assets/images/exaample_list_errors.svg](https://github.com/X-R-G-B/norma2/blob/main/assets/images/exaample_list_errors.svg)
+
+![https://github.com/X-R-G-B/norma2/blob/main/assets/images/example_explain.svg](https://github.com/X-R-G-B/norma2/blob/main/assets/images/example_explain.svg)
+
 # Install
 
 ```bash
