@@ -1,5 +1,5 @@
 [project]
-name = "normatrix"
+name = "norma2"
 description = "check c epitech coding style"
 authors = [
     {name = "Xavier Mitault", email = "xavier.mitault@epitech.eu"},
