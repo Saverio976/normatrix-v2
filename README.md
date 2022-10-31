@@ -25,3 +25,10 @@ norma2 --help
 # Source
 
 [X-R-G-B/norma2](https://github.com/X-R-G-B/norma2)
+
+
+
+#### Release name
+```
+will follow greek letters: https://en.wikipedia.org/wiki/Greek_alphabet
+```
