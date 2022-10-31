@@ -2,7 +2,8 @@ import sys
 from typing import Optional
 
 import regex
-from regexs import regexs_class
+
+from norma2.regexs import regexs_class
 
 # https://regex101.com/r/6tCFWA/1
 re = r"while {0,}\n{0,} {0,}\(([\s\S]*?\)) {0,}\n{0,} {0,}\{"

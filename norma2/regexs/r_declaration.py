@@ -2,7 +2,8 @@ import sys
 from typing import Optional
 
 import regex
-from regexs import regexs_class
+
+from norma2.regexs import regexs_class
 
 # https://regex101.com/r/fBLUOp/2 (old)
 # re = r"\w{1,}( \*{0,} {0,}\w{1,}(\[[0-9]{0,}\]){0,}){1,} {0,}= {0,}(([0-9]{1,})|(\".*\")|(\{.*\})|([&*]{1,}\w{1,})|(NULL)) {0,};{1}" # noqa: E501

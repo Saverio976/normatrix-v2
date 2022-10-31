@@ -2,7 +2,8 @@ import sys
 from typing import Optional
 
 import regex
-from regexs import regexs_class
+
+from norma2.regexs import regexs_class
 
 # https://regex101.com/r/q4jpdl/1
 re = r"for(\s)?\(([\w\W\s]*?;){2}([\w\W\s]*?)\)\s{0,}(\{|;)"

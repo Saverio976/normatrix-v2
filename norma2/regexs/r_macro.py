@@ -2,7 +2,8 @@ import sys
 from typing import Optional
 
 import regex
-from regexs import regexs_class
+
+from norma2.regexs import regexs_class
 
 # https://regex101.com/r/tp3bAf/1
 re = r"#define \w{1,}(\((\w,{0,} {0,}){0,}\)){0,1} {0,}(.*\\\n){0,}(.*){1}"

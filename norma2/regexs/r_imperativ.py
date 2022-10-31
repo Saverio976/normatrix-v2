@@ -2,7 +2,8 @@ import sys
 from typing import Optional
 
 import regex
-from regexs import regexs_class
+
+from norma2.regexs import regexs_class
 
 #  https://regex101.com/r/Kybx1Z/1
 re = r"^(.*?\\\n){0,}(.*);"

@@ -2,7 +2,8 @@ import sys
 from typing import Optional
 
 import regex
-from regexs import regexs_class
+
+from norma2.regexs import regexs_class
 
 # https://regex101.com/r/kBFq4T/5
 re = r"\w{1,}(\*{0,} \*{0,} {0,}\w{1,}(\[[0-9]{0,}\]){0,}){1,} {0,}\((((\w{1,} {0,}\n{0,}(\*{0,} \*{0,} {0,}\n{0,} {0,}\w{1,}(\[[0-9]{0,}\]){0,}){1,} {0,}\n{0,} {0,},{0,1} {0,}\n{0,} {0,}){0,})|( {0,}\n{0,} {0,}void {0,}\n{0,} {0,}))\) {0,}\n{0,}\{"  # noqa: E501

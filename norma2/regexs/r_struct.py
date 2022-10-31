@@ -2,7 +2,8 @@ import sys
 from typing import Optional
 
 import regex
-from regexs import regexs_class
+
+from norma2.regexs import regexs_class
 
 # https://regex101.com/r/AUdkaY/1
 re = r"(typedef \n{0,}){0,1} {0,}struct {0,}\n{0,} {1,}\w{1,} {0,}\n{0,} {0,}\{"  # noqa: E501
