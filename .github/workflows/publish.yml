@@ -19,11 +19,9 @@ jobs:
       - name: Install Dependencies
         run: pdm install --prod --no-editable --no-self --no-lock
 
-      - name: Export Env
-        run: |
-          export PDM_PUBLISH_USERNAME="__token__"
-          export PDM_PUBLISH_PASSWORD="${{ secrets.PYPI_API_TOKEN }}"
-          export PDM_PUBLISH_COMMENT="${{ github.event.release.body }}"
-
       - name: Publish
         run: pdm publish -c "$PDM_PUBLISH_COMMENT"
+        env:
+          PDM_PUBLISH_USERNAME: __token__
+          PDM_PUBLISH_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
+          PDM_PUBLISH_COMMENT: ${{ github.event.release.body }}
