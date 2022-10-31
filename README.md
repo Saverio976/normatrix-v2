@@ -4,8 +4,8 @@ check c epitech coding style
 
 ## Help
 
-![help](/assets/images/help.png)
+![help](https://github.com/X-R-G-B/norma2/blob/main/assets/images/help.png)
 
 # Example
 
-![run_playground](./assets/images/run_playground.svg)
+![run_playground](https://github.com/X-R-G-B/norma2/blob/main/assets/images/run_playground.svg)
