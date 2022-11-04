@@ -2,7 +2,7 @@ name: Performance
 
 on:
   push:
-    branch: [main]
+    branch: [main, dev]
 
 jobs:
   scalene:
@@ -48,7 +48,7 @@ jobs:
       - name: Memray Tree
         run: pdm run memray tree memray-norma2.bin
 
-  pyperf:
+  hyperfine:
     runs-on: ubuntu-latest
 
     steps:
@@ -62,18 +62,11 @@ jobs:
       - name: Install Dependencies
         run: pdm install --no-editable --no-lock
 
-      - name: pyperf setup
+      - name: Install Hyperfine
         run: |
-          pdm run pyperf timeit \
-            --setup 'from norma2.__main__ import entrypoint' \
-            -o pyperf-norma2.json \
-            'entrypoint(["playground", "--only-exit-code"])'
+          wget https://github.com/sharkdp/hyperfine/releases/download/v1.15.0/hyperfine-musl_1.15.0_amd64.deb
+          sudo dpkg -i ./hyperfine-musl_1.15.0_amd64.deb
 
-      - name: Pyperf Show
-        run: pdm run pyperf show pyperf-norma2.json
+      - name: Hyperfine
+        run: hyperfine 'pdm run norma2 playground --only-exit-code' -i --warmup 2
 
-      - name: Pyperf Stats
-        run: pdm run pyperf stats pyperf-norma2.json
-
-      - name: Pyperf Slowest
-        run: pdm run pyperf slowest pyperf-norma2.json

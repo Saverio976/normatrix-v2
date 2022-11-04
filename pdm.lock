@@ -190,11 +190,6 @@ requires_python = ">=3.6"
 summary = "Python Bindings for the NVIDIA Management Library"
 
 [[package]]
-name = "pyperf"
-version = "2.5.0"
-summary = "Python module to run and analyze benchmarks"
-
-[[package]]
 name = "pyright"
 version = "1.1.278"
 requires_python = ">=3.7"
@@ -292,7 +287,7 @@ dependencies = [
 
 [metadata]
 lock_version = "4.0"
-content_hash = "sha256:209183f7ca57b2755f573629757d0feb701d72ea4e17c766d7343d90c519e508"
+content_hash = "sha256:b8133cb1646a5e662c990a7db62aee7f6dee03ae9480ce7a4e6141355774a5b0"
 
 [metadata.files]
 "black 22.10.0" = [
@@ -494,10 +489,6 @@ content_hash = "sha256:209183f7ca57b2755f573629757d0feb701d72ea4e17c766d7343d90c
 "pynvml 11.4.1" = [
     {url = "https://files.pythonhosted.org/packages/63/4f/a9d35c8bc45af9b5128e66d9af8099c91431db574cc90da0071ad432d110/pynvml-11.4.1.tar.gz", hash = "sha256:b2e4a33b80569d093b513f5804db0c7f40cfc86f15a013ae7a8e99c5e175d5dd"},
     {url = "https://files.pythonhosted.org/packages/cc/0a/47be6726fd13f1f4371fa858b506228ed12bc418c07ffcaa6c0f7ceedac0/pynvml-11.4.1-py3-none-any.whl", hash = "sha256:d27be542cd9d06558de18e2deffc8022ccd7355bc7382255d477038e7e424c6c"},
-]
-"pyperf 2.5.0" = [
-    {url = "https://files.pythonhosted.org/packages/59/1f/1cce51c072efb2b1c8d190a6e4567200a9c17204f92a74193838ba24b09c/pyperf-2.5.0-py3-none-any.whl", hash = "sha256:41633bf3e55094834a803f9be612e5658bab4df6215c324de91d93ec96f16cef"},
-    {url = "https://files.pythonhosted.org/packages/e0/c5/f98d603305d5b1b73ffb5b187014a997ef1f8af875d2fe54c1fa7b9b5d3c/pyperf-2.5.0.tar.gz", hash = "sha256:9fd9be5b57224e68b5a5b88f7126f15b6c8667573f62a0a39faf14d6fdd13909"},
 ]
 "pyright 1.1.278" = [
     {url = "https://files.pythonhosted.org/packages/6e/8d/2da953f6f0426ce6f7a4b7f6d0cec52da84adc6061efebf937e76910d29e/pyright-1.1.278.tar.gz", hash = "sha256:a9fd0399657ef7dadabb57f0ccb0216c39f4bfbd9e3e1c28232bf55748330880"},
