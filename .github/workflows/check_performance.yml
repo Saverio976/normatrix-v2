@@ -1,0 +1,49 @@
+name: Performance
+
+on:
+  push:
+    branch: [main]
+
+jobs:
+  scalene:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up PDM
+        uses: pdm-project/setup-pdm@v2
+        with:
+          python-version: "3.x"
+
+      - name: Install Dependencies
+        run: pdm install --no-editable --no-self --no-lock
+
+      - name: Scalene
+        run: pdm run scalene --cli --json -- norma2/__main__.py playground --only-exit-code
+
+  memray:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up PDM
+        uses: pdm-project/setup-pdm@v2
+        with:
+          python-version: "3.x"
+
+      - name: Install Dependencies
+        run: pdm install --no-editable --no-self --no-lock
+
+      - name: Memray setup
+        run: pdm run memray run -o memray-norma2.bin -- norma2/__main__.py playground --only-exit-code
+
+      - name: Memray Stats
+        run: pdm run memray stats memray-norma2.bin
+
+      - name: Memray Summary
+        run: pdm run memray summary memray-norma2.bin
+
+      - name: Memray Tree
+        run: pdm run memray tree memray-norma2.bin
