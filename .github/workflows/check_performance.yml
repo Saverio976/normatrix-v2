@@ -63,7 +63,11 @@ jobs:
         run: pdm install --no-editable --no-lock
 
       - name: pyperf setup
-        run: pdm run ./assets/scripts/pyperf_norma.py -o pyperf-norma2.json
+        run: |
+          pdm run pyperf timeit \
+            --setup 'from norma2.__main__ import entrypoint' \
+            -o pyperf-norma2.json \
+            'entrypoint(["playground", "--only-exit-code"])'
 
       - name: Pyperf Show
         run: pdm run pyperf show pyperf-norma2.json
