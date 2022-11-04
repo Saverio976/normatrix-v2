@@ -36,7 +36,7 @@ jobs:
       - name: Install Dependencies
         run: pdm install --no-editable --no-lock
 
-      - name: Memray setup
+      - name: memray setup
         run: pdm run memray run -o memray-norma2.bin -- norma2/__main__.py playground --only-exit-code || exit 0
 
       - name: Memray Stats
@@ -47,3 +47,29 @@ jobs:
 
       - name: Memray Tree
         run: pdm run memray tree memray-norma2.bin
+
+  pyperf:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up PDM
+        uses: pdm-project/setup-pdm@v2
+        with:
+          python-version: "3.x"
+
+      - name: Install Dependencies
+        run: pdm install --no-editable --no-lock
+
+      - name: pyperf setup
+        run: pdm run ./assets/scripts/pyperf_norma.py -o pyperf-norma2.json
+
+      - name: Pyperf Show
+        run: pdm run pyperf show pyperf-norma2.json
+
+      - name: Pyperf Stats
+        run: pdm run pyperf stats pyperf-norma2.json
+
+      - name: Pyperf Slowest
+        run: pdm run pyperf slowest pyperf-norma2.json

@@ -1,4 +1,6 @@
+#!/usr/bin/env python3
 import sys
+from typing import List, Optional
 
 from rich.console import Console
 
@@ -8,8 +10,8 @@ from norma2.main import main
 from norma2.utils import open_file
 
 
-def entrypoint():
-    config = get_config(Console(record=True))
+def entrypoint(argv: Optional[List[str]] = None):
+    config = get_config(Console(record=True), argv)
 
     ex = main(config)
 
@@ -30,8 +32,9 @@ def entrypoint():
         out = True
     if out:
         open_file(f"{outfile}{outfilext}")
+    return ex
 
+
+if __name__ == "__main__":
+    ex = entrypoint()
     sys.exit(ex)
-
-
-entrypoint()

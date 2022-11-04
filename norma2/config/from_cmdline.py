@@ -1,4 +1,5 @@
 import argparse
+from typing import List, Optional
 
 from rich.console import Console
 from rich_argparse import RawDescriptionRichHelpFormatter
@@ -185,7 +186,7 @@ options = [
 ]
 
 
-def _parser():
+def _parser(argv: Optional[List[str]] = None):
     parser = argparse.ArgumentParser(
         formatter_class=RawDescriptionRichHelpFormatter,
         description="Norm Checker For the C Epitech Coding Style",
@@ -193,14 +194,14 @@ def _parser():
     )
     for args in options:
         parser.add_argument(*args["name_or_flags"], **(args["params"]))
-    result = parser.parse_args()
+    result = parser.parse_args(argv)
     result.format = OutputFormat(result.format)
     result.explain_error = " ".join(result.explain_error)
     return result
 
 
-def from_cmdline(console: Console) -> Config:
+def from_cmdline(console: Console, argv: Optional[List[str]] = None) -> Config:
     conf = Config(console)
-    args = _parser()
+    args = _parser(argv)
     conf = conf + args
     return conf
