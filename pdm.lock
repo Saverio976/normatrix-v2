@@ -206,11 +206,11 @@ summary = "YAML parser and emitter for Python"
 
 [[package]]
 name = "refurb"
-version = "1.4.0"
-requires_python = ">=3.10,<4.0"
+version = "1.5.0"
+requires_python = ">=3.10"
 summary = "A tool for refurbish and modernize Python codebases"
 dependencies = [
-    "mypy<0.982,>=0.981",
+    "mypy<=0.982,>=0.981",
     "tomli<3.0.0,>=2.0.1; python_version < \"3.11\"",
 ]
 
@@ -232,7 +232,7 @@ dependencies = [
 
 [[package]]
 name = "rich-argparse"
-version = "0.4.0"
+version = "0.5.0"
 requires_python = ">=3.7"
 summary = "A rich help formatter for argparse"
 dependencies = [
@@ -542,9 +542,9 @@ content_hash = "sha256:4637b909e20926fd6f0d7bd37b5ebc900281ec969b61c5284b025779f
     {url = "https://files.pythonhosted.org/packages/f8/54/799b059314b13e1063473f76e908f44106014d18f54b16c83a16edccd5ec/PyYAML-6.0-cp311-cp311-macosx_10_9_x86_64.whl", hash = "sha256:d4b0ba9512519522b118090257be113b9468d804b19d63c71dbcf4a48fa32358"},
     {url = "https://files.pythonhosted.org/packages/fc/48/531ecd926fe0a374346dd811bf1eda59a95583595bb80eadad511f3269b8/PyYAML-6.0-cp311-cp311-win32.whl", hash = "sha256:bfaef573a63ba8923503d27530362590ff4f576c626d86a9fed95822a8255fd7"},
 ]
-"refurb 1.4.0" = [
-    {url = "https://files.pythonhosted.org/packages/50/56/76419e88c0304b4b007e13be4b9f70c730e41d65457ec2366026c84c392f/refurb-1.4.0-py3-none-any.whl", hash = "sha256:bdbc4f8e622eef1a31122c35b8714c8c62f5149bb4814ffd62758331324f5476"},
-    {url = "https://files.pythonhosted.org/packages/b4/ed/306f01017bb0af2765dabfe3e3f40ce24bfa6b415b97877a40dd713a0432/refurb-1.4.0.tar.gz", hash = "sha256:1c97e3532159a131a4391b2d639c14e7be6fba28048f0ebdc57fb8552bd2aed0"},
+"refurb 1.5.0" = [
+    {url = "https://files.pythonhosted.org/packages/38/e0/40b0d26504f11aacc3119e50a590eb6110e389b29b533c930296a7432e8c/refurb-1.5.0-py3-none-any.whl", hash = "sha256:53487cf3aef115ee911e5cc58721dd803d154a856a7816fef1e6fa3d285f1c3d"},
+    {url = "https://files.pythonhosted.org/packages/5e/e5/6c165f6020698d180716c41bbbf12210c6ad1b14e27a4dfb0684455b85c2/refurb-1.5.0.tar.gz", hash = "sha256:e3c911e42442f3f50a63761ab5e100c574e20803aee3dc96cacfd21eee5cb89e"},
 ]
 "regex 2022.10.31" = [
     {url = "https://files.pythonhosted.org/packages/00/7e/ab5a54f60e36f4de0610850866b848839a7b02ad4f05755bce429fbc1a5a/regex-2022.10.31-cp310-cp310-musllinux_1_1_x86_64.whl", hash = "sha256:763b64853b0a8f4f9cfb41a76a4a85a9bcda7fdda5cb057016e7706fde928e66"},
@@ -640,9 +640,9 @@ content_hash = "sha256:4637b909e20926fd6f0d7bd37b5ebc900281ec969b61c5284b025779f
     {url = "https://files.pythonhosted.org/packages/11/23/814edf09ec6470d52022b9e95c23c1bef77f0bc451761e1504ebd09606d3/rich-12.6.0.tar.gz", hash = "sha256:ba3a3775974105c221d31141f2c116f4fd65c5ceb0698657a11e9f295ec93fd0"},
     {url = "https://files.pythonhosted.org/packages/32/60/81ac2e7d1e3b861ab478a72e3b20fc91c4302acd2274822e493758941829/rich-12.6.0-py3-none-any.whl", hash = "sha256:a4eb26484f2c82589bd9a17c73d32a010b1e29d89f1604cd9bf3a2097b81bb5e"},
 ]
-"rich-argparse 0.4.0" = [
-    {url = "https://files.pythonhosted.org/packages/97/98/3f8d5f5d80bc0b6cc3b0d428dd4daa300853f066254d03e350c1cfab6fcd/rich_argparse-0.4.0-py3-none-any.whl", hash = "sha256:9f179ec317375232bdceb2e52900dad4a02f4125b9f9e6a52f045c437fcc9e17"},
-    {url = "https://files.pythonhosted.org/packages/ae/2f/ddb5b46405191a5e741ce6f52a40a3847b64d6b6ba956234195caaa45d6e/rich_argparse-0.4.0.tar.gz", hash = "sha256:cd085f65a71d3496a3b42542590eb3c18a6a35024cdacd3124ed129e499d09cf"},
+"rich-argparse 0.5.0" = [
+    {url = "https://files.pythonhosted.org/packages/5c/c5/fb2e099211e4e775cf8ac36789ec1416f1e338aa6ea85154a61553bb27f7/rich_argparse-0.5.0-py3-none-any.whl", hash = "sha256:9171efd7b3f3b964c2c93c60c8a1c4c1f80f982b1886fe305b22aabe0be0c3ac"},
+    {url = "https://files.pythonhosted.org/packages/ea/1e/ff6df80e6cd722cfcd9f2eba1075214e52f4e8b31706fa29eaf54062ec12/rich_argparse-0.5.0.tar.gz", hash = "sha256:808043627c7ed1adc1a8979d106e98b027089981e232ec1668353574d314a7e7"},
 ]
 "ruff 0.0.100" = [
     {url = "https://files.pythonhosted.org/packages/07/08/250b25d3355bc704f197c61715dd2c18c2c36d5764562a6c2bfb9bd0e9e6/ruff-0.0.100-py3-none-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:812fb967f9aa4a5c2ca94f85c69c6d7c3af8993c5472397d5c076aa1b90a5fa1"},
