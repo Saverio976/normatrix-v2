@@ -36,3 +36,10 @@ repos:
     language: system
     entry: pdm run pyright
     types: [python]
+
+  - id: ruff
+    name: ruff
+    stages: [commit]
+    language: system
+    entry: pdm run ruff
+    types: [python]
