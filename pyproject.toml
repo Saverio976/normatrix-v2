@@ -9,6 +9,7 @@ dependencies = [
     "regex>=2022.9.13",
     "rich>=12.6.0",
     "rich-argparse>=0.3.1",
+    "shtab>=1.5.7",
 ]
 requires-python = ">=3.10"
 readme = "README.md"

@@ -1,6 +1,7 @@
 import argparse
 from typing import List, Optional
 
+import shtab
 from rich.console import Console
 from rich_argparse import RawDescriptionRichHelpFormatter
 
@@ -194,6 +195,7 @@ def _parser(argv: Optional[List[str]] = None):
     )
     for args in options:
         parser.add_argument(*args["name_or_flags"], **(args["params"]))
+    shtab
     result = parser.parse_args(argv)
     result.format = OutputFormat(result.format)
     result.explain_error = " ".join(result.explain_error)
