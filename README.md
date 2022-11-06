@@ -24,6 +24,8 @@ pdm run norma2 --explain G1
 
 ```bash
 pip install -U norma2
+# for bash/zsh completion:
+sudo norma2 --install-completion
 ```
 
 # Usage
