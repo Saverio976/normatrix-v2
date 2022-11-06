@@ -1,4 +1,7 @@
 import argparse
+import os
+import sys
+from pathlib import Path
 from typing import List, Optional
 
 import shtab
@@ -184,6 +187,16 @@ options = [
             "help": "list all norm errors that norma2 have registered",
         },
     },
+    {
+        "name_or_flags": ["--install-completion"],
+        "params": {
+            "action": "store_const",
+            "dest": "install_completion",
+            "const": not Config.install_completion,
+            "default": Config.install_completion,
+            "help": "install norma2 completion (need root permission)",
+        },
+    },
 ]
 
 
@@ -193,17 +206,46 @@ def _parser(argv: Optional[List[str]] = None):
         description="Norm Checker For the C Epitech Coding Style",
         epilog=__FULL_DOC,
     )
+    shtab.add_argument_to(parser, "--print-completion")
     for args in options:
         parser.add_argument(*args["name_or_flags"], **(args["params"]))
-    shtab
     result = parser.parse_args(argv)
     result.format = OutputFormat(result.format)
     result.explain_error = " ".join(result.explain_error)
-    return result
+    return result, parser
+
+
+def install_completion(parser: argparse.ArgumentParser, config: Config):
+    shell = ""
+    nb_try = 0
+    choices = {
+        "bash": (
+            shtab.complete_bash,
+            f"{os.getenv('BASH_COMPLETION_COMPAT_DIR')}/norma2",
+        ),
+        "zsh": (shtab.complete_zsh, "/usr/local/share/zsh/site-functions/_norma2"),
+    }
+    while shell not in ("bash", "zsh"):
+        shell = config.console.input("Enter shell: {bash,zsh}: ")
+        nb_try += 1
+        if nb_try > 3:
+            print("please enter bash or zsh", config.console.stderr)
+            sys.exit(2)
+    func = choices[shell]
+    completions = func[0](parser)
+    directory = func[1].split(os.path.sep)
+    for i in range(1, len(directory) - 1):
+        path = os.path.sep.join(directory[: i + 1])
+        os.makedirs(path, exist_ok=True)
+    Path(func[1]).write_text(completions)
+    config.console.print(f"Completions writed to {func[1]}\nYou can restart {shell}")
+    sys.exit(0)
 
 
 def from_cmdline(console: Console, argv: Optional[List[str]] = None) -> Config:
     conf = Config(console)
-    args = _parser(argv)
+    args, parser = _parser(argv)
     conf = conf + args
+    if conf.install_completion:
+        install_completion(parser, conf)
     return conf

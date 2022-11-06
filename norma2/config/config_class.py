@@ -114,6 +114,7 @@ class __Defaults:
     show_explanation = False
     explain_error = ""
     list_errors = False
+    install_completion = False
     _options = [
         "operators_plugin",
         "preview",
@@ -130,6 +131,7 @@ class __Defaults:
         "show_explanation",
         "explain_error",
         "list_errors",
+        "install_completion",
     ]
 
 

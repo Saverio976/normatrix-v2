@@ -167,3 +167,4 @@ cython_debug/
 .normatrix.report.*
 *.bin
 /profile.json
+/.ruff_cache/
