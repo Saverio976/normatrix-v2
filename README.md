@@ -33,7 +33,11 @@ sudo norma2 --install-completion
 - docker
 
 ```bash
-docker run -it --rm -v "$PWD":/code:ro norma2
+# pull from dockerhub
+docker run -it --rm -v "$PWD":/code:ro saverio976/norma2
+# build and run it (need to download https://github.com/X-R-G-B/norma2/blob/main/Dockerfile)
+docker build . -t norma2
+sudo docker run -it --rm -v "$PWD":/code:ro norma2
 ```
 
 # Usage
