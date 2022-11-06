@@ -2,6 +2,7 @@ from typing import List
 
 from norma2.checkers.check import check as check_norm
 from norma2.config.config_class import Config
+from norma2.config.from_gitignore import from_gitignore
 from norma2.errors.norm import ALL_ERROR_NORM, _TemplateNormError
 from norma2.parser import file, get_files
 from norma2.show_stats import show_stat_folder
@@ -102,11 +103,12 @@ def main(config: Config) -> int:
             config.console.print(f"[blue]Check: {folder}", justify="center")
         list_all_err: List[List[_TemplateNormError]] = []
         try:
+            conf_gitignore = from_gitignore(config.console, folder)
             files_to_check = get_files.get_all_files(
                 folder,
                 config.folder_exclude,
                 config.file_ext_exclude,
-                config.gitignore_matches,
+                conf_gitignore.gitignore_matches,
             )
         except Exception:
             config.console.print(":warning: [red]An Error Occured")
