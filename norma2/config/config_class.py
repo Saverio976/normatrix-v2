@@ -1,8 +1,11 @@
 import json
 from argparse import Namespace
-from typing import Any, Union
+from contextlib import suppress
+from typing import Any, Callable, Optional, Union
 
 from rich.console import Console
+
+GITIGNORE_MATCHES_TYPE = Optional[Callable[[str], bool]]
 
 
 class __OutputFormat:
@@ -115,6 +118,8 @@ class __Defaults:
     explain_error = ""
     list_errors = False
     install_completion = False
+    folder_exclude = [".git"]
+    file_ext_exclude = []
     _options = [
         "operators_plugin",
         "preview",
@@ -132,10 +137,14 @@ class __Defaults:
         "explain_error",
         "list_errors",
         "install_completion",
+        "folder_exclude",
+        "file_ext_exclude",
     ]
 
 
 class Config(__Defaults):
+    gitignore_matches: GITIGNORE_MATCHES_TYPE = None
+
     def __init__(self, console: Console) -> None:
         super().__init__()
         self.console: Console = console
@@ -163,6 +172,11 @@ class Config(__Defaults):
                 self.__add_one(other, attr, conf)
         except Exception:
             self.console.print_exception()
+        with suppress(Exception):
+            if self.gitignore_matches is None:
+                conf.gitignore_matches = other.gitignore_matches
+            else:
+                conf.gitignore_matches = self.gitignore_matches
         return conf
 
     def __str__(self):

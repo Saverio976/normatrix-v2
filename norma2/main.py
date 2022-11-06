@@ -102,7 +102,12 @@ def main(config: Config) -> int:
             config.console.print(f"[blue]Check: {folder}", justify="center")
         list_all_err: List[List[_TemplateNormError]] = []
         try:
-            files_to_check = get_files.get_all_files(folder, [], [])
+            files_to_check = get_files.get_all_files(
+                folder,
+                config.folder_exclude,
+                config.file_ext_exclude,
+                config.gitignore_matches,
+            )
         except Exception:
             config.console.print(":warning: [red]An Error Occured")
             config.console.print_exception()
