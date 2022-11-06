@@ -22,10 +22,18 @@ pdm run norma2 --explain G1
 
 # Install
 
+- pip
+
 ```bash
 pip install -U norma2
 # for bash/zsh completion:
 sudo norma2 --install-completion
+```
+
+- docker
+
+```bash
+docker run -it --rm -v "$PWD":/code:ro norma2
 ```
 
 # Usage
