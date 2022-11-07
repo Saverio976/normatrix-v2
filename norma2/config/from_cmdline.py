@@ -8,7 +8,8 @@ import shtab
 from rich.console import Console
 from rich_argparse import RawDescriptionRichHelpFormatter
 
-from norma2.__version__ import __version__, dependencies
+from norma2.__dependencies__ import dependencies
+from norma2.__version__ import __version__
 from norma2.config.config_class import Config, OutputFormat
 
 __FULL_DOC = f"""SOURCE:
