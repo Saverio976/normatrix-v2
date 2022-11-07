@@ -2,7 +2,7 @@ name: Publish Package
 
 on:
   release:
-    type: [published]
+    types: [published]
 
 jobs:
   pypi-publish:
@@ -43,8 +43,14 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build and push
+      - name: Build and push (tags latest)
         uses: docker/build-push-action@v3
         with:
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}:latest
+
+      - name: Build and push (tags pypi)
+        uses: docker/build-push-action@v3
+        with:
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}:${{ github.event.release.name }}
