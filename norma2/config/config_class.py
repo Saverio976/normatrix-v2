@@ -117,7 +117,6 @@ class __Defaults:
     show_explanation = False
     explain_error = ""
     list_errors = False
-    install_completion = False
     folder_exclude = [".git"]
     file_ext_exclude = []
     _options = [
@@ -136,7 +135,6 @@ class __Defaults:
         "show_explanation",
         "explain_error",
         "list_errors",
-        "install_completion",
         "folder_exclude",
         "file_ext_exclude",
     ]

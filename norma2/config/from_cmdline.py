@@ -2,12 +2,13 @@ import argparse
 import os
 import sys
 from pathlib import Path
-from typing import List, Optional
+from typing import List, NoReturn, Optional
 
 import shtab
 from rich.console import Console
 from rich_argparse import RawDescriptionRichHelpFormatter
 
+from norma2.__version__ import __version__, dependencies
 from norma2.config.config_class import Config, OutputFormat
 
 __FULL_DOC = f"""SOURCE:
@@ -192,8 +193,18 @@ options = [
         "params": {
             "action": "store_const",
             "dest": "install_completion",
-            "const": not Config.install_completion,
-            "default": Config.install_completion,
+            "const": True,
+            "default": False,
+            "help": "install norma2 completion (need root permission)",
+        },
+    },
+    {
+        "name_or_flags": ["--version"],
+        "params": {
+            "action": "store_const",
+            "dest": "version",
+            "const": True,
+            "default": False,
             "help": "install norma2 completion (need root permission)",
         },
     },
@@ -215,7 +226,7 @@ def _parser(argv: Optional[List[str]] = None):
     return result, parser
 
 
-def install_completion(parser: argparse.ArgumentParser, config: Config):
+def install_completion(parser: argparse.ArgumentParser, config: Config) -> NoReturn:
     shell = ""
     nb_try = 0
     choices = {
@@ -242,10 +253,18 @@ def install_completion(parser: argparse.ArgumentParser, config: Config):
     sys.exit(0)
 
 
+def print_version(console: Console) -> NoReturn:
+    console.print(f"norma2: {__version__}")
+    console.print(f"norma2 dependencies: {dependencies}")
+    sys.exit(0)
+
+
 def from_cmdline(console: Console, argv: Optional[List[str]] = None) -> Config:
     conf = Config(console)
     args, parser = _parser(argv)
     conf = conf + args
-    if conf.install_completion:
+    if args.install_completion:
         install_completion(parser, conf)
+    if args.version:
+        print_version(console)
     return conf
