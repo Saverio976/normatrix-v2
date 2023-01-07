@@ -4,6 +4,7 @@ from norma2.config.config_class import Config
 from norma2.errors.norm import _TemplateNormError
 from norma2.parser._file import _File
 from norma2.parser.cfile import CFile
+from norma2.parser.hsfile import HSFile
 from norma2.parser.makefile import MakeFile
 
 
@@ -25,6 +26,8 @@ class File:
             self.file_obj = CFile(filepath, config)
         elif filepath.endswith("Makefile"):
             self.file_obj = MakeFile(filepath, config)
+        elif filepath.endswith(".hs"):
+            self.file_obj = HSFile(filepath, config)
         else:
             self.file_obj = DefaultFile(filepath, config)
 
